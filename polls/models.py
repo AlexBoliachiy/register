@@ -63,6 +63,12 @@ class Jud(models.Model):
     name = models.CharField(max_length=64)
     judge_name = models.CharField(max_length=64)
 
+    def add(self, adress, name, judge_name):
+        self.adress = adress
+        self.name = name
+        self.judge_name = judge_name
+        self.save()
+
 
 class Person(models.Model):
     type_exist = models.BooleanField(default=True)
@@ -76,6 +82,17 @@ class Person(models.Model):
 
     def __str__(self):
         return self.name
+
+    def add(self, type_exist, name, code, ownership_part, kved, government_part, jud_procedure, information):
+        self.type_exist = type_exist
+        self.name = name
+        self.code = code
+        self.ownership_part = ownership_part
+        self.kved = kved
+        self.goverment_part = government_part
+        self.jud_procedure = jud_procedure
+        self.information = information
+        self.save()
 
 
 class Act(models.Model):
@@ -91,11 +108,32 @@ class Act(models.Model):
     list_creditors = models.TextField()
     creditor_requirements = models.TextField()
 
+    def add(self, start_date, finish_jud_date, info_processing, end_date, arbitr_id, jud_id_date, person, arbitr_status,
+            arbitr_start, list_creditors, creditor_requirements):
+        self.start_date = start_date
+        self.finish_jud_date = finish_jud_date
+        self.info_processing = info_processing
+        self.end_date = end_date
+        self.arbitr_id = arbitr_id
+        self.jud_id_judge = jud_id_date
+        self.person = person
+        self.arbitr_status = arbitr_status
+        self.arbitr_start = arbitr_start
+        self.list_creditors = list_creditors
+        self.creditor_requirements = creditor_requirements
+        self.save()
+
 
 class RenewalCertificate(models.Model):
     arbitr_id = models.CharField(max_length=8)
     issue_date = models.DateField()
     certificate_arbitr_id = models.ForeignKey(Certificate, models.CASCADE)
+
+    def add(self, arbitr_id, issue_date, certificate_arbitr_id):
+        self.arbitr_id = arbitr_id
+        self.issue_date = issue_date
+        self.certificate_arbitr_id = certificate_arbitr_id
+        self.save()
 
 
 class DisciplinalPenalty(models.Model):
@@ -103,9 +141,18 @@ class DisciplinalPenalty(models.Model):
     protocol_number = models.CharField(max_length=64)
     Arbitration = models.ForeignKey(Arbitration, on_delete=models.CASCADE)
 
+    def add(self, issue_date, protocol_number, Arbitration):
+        self.issue_date = issue_date
+        self.protocol_number = protocol_number
+        self.Arbitration = Arbitration
+        self.save()
+
 
 class DuplicateCertificate(models.Model):
     issue_date = models.DateField()
     certificate = models.ForeignKey(Certificate, on_delete=models.CASCADE)
 
-
+    def add(self, issue_date, certificate):
+        self.issue_date = issue_date
+        self.certificate = certificate
+        self.save()
