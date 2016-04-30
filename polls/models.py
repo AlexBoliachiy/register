@@ -18,6 +18,19 @@ class Certificate(models.Model):
     renewal_certificate = models.CharField(max_length=64)
     audit = models.TextField()
 
+    def add(self, exam_complete_date, id_exam_protocol, date_certificate_mju, date_certificate,info_quality, full_number,
+        working_exp, renewal_certificate, audit):
+        self.exam_complete_date = exam_complete_date
+        self.id_exam_protocol = id_exam_protocol
+        self.date_certificate_mju = date_certificate_mju
+        self.date_certificate = date_certificate
+        self.info_quality = info_quality
+        self.full_number = full_number
+        self.working_exp = working_exp
+        self.renewal_certificate = renewal_certificate
+        self.audit = audit
+        self.save()
+
     def __str__(self):
         return str(self.full_number)
 
@@ -33,6 +46,16 @@ class Arbitration(models.Model):
 
     def __str__(self):
         return str(self.full_name)
+
+    def add(self, acrivity_info, full_name, dismissal_date, office_location, organization_field, name_register, certificate ):
+        self.activity_info = acrivity_info
+        self.full_name = full_name
+        self.dismissal_date = dismissal_date
+        self.office_location = office_location
+        self.organization_field = organization_field
+        self.name_register = name_register
+        self.certificate = certificate
+        self.save()
 
 
 class Jud(models.Model):
