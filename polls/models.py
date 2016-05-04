@@ -5,6 +5,7 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 
 class Certificate(models.Model):
@@ -18,7 +19,7 @@ class Certificate(models.Model):
     renewal_certificate = models.CharField(max_length=64)
     audit = models.TextField()
 
-    def add(self, exam_complete_date, id_exam_protocol, date_certificate_mju, date_certificate,info_quality, full_number,
+    def add(self, exam_complete_date, id_exam_protocol, date_certificate_mju, date_certificate, info_quality, full_number,
         working_exp, renewal_certificate, audit):
         self.exam_complete_date = exam_complete_date
         self.id_exam_protocol = id_exam_protocol
@@ -36,18 +37,19 @@ class Certificate(models.Model):
 
 
 class Arbitration(models.Model):
-    full_name = models.CharField(max_length=64)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
     certificate = models.ForeignKey(Certificate, on_delete=models.CASCADE)
     dismissal_date = models.DateField()
     organization_field = models.CharField(max_length=64)
     office_location = models.CharField(max_length=6)
-    activity_info = models.TextField()  # dangerous
+    activity_info = models.TextField()
     name_register = models.CharField(max_length=64)
 
     def __str__(self):
-        return str(self.full_name)
+        return str(self.certificate)
 
-    def add(self, acrivity_info, full_name, dismissal_date, office_location, organization_field, name_register, certificate ):
+    def add(self, acrivity_info, full_name, dismissal_date, office_location, organization_field, name_register,
+            certificate):
         self.activity_info = acrivity_info
         self.full_name = full_name
         self.dismissal_date = dismissal_date
@@ -100,7 +102,7 @@ class Act(models.Model):
     finish_jud_date = models.DateField()
     info_processing = models.TextField()
     end_date = models.DateField()
-    arbitr_id = models.ForeignKey(Arbitration, on_delete=models.CASCADE)
+    arbitration = models.ForeignKey(Arbitration, on_delete=models.CASCADE)
     jud_id_judge = models.ForeignKey(Jud)
     person = models.ForeignKey(Person)
     arbitr_status = models.CharField(max_length=64)
@@ -114,7 +116,7 @@ class Act(models.Model):
         self.finish_jud_date = finish_jud_date
         self.info_processing = info_processing
         self.end_date = end_date
-        self.arbitr_id = arbitr_id
+        self.arbitration = arbitr_id
         self.jud_id_judge = jud_id_date
         self.person = person
         self.arbitr_status = arbitr_status

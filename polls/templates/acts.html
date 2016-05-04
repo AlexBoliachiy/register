@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>
+        Current acts:
+    </h1>
+    <ul>
+        {% for x in list_acts %}
+        {# Вот тут просто идет вывод дел конкретного арбитра. #}
+            <a href="?"> {{ x.person.name}} {{ "    " }} {{ x.start_date }} </a>
+
+        {% endfor %}
+    </ul>
+{% endblock %}
