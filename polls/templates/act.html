@@ -8,7 +8,10 @@
     чтобы не просто тупо выводились значения, а еще и было понятно
     что они означают.
     {% endcomment %}
-    {{ act.person }} <br />
-    {{ act.start_date }} <br />
+    <p class="info">Ім'я боржника: {{ "    " }}{{ act.person }} <br /></p>
+    <p class="info">Дата відкриття справи: {{ act.start_date }} <br /></p>
+    <p class="info">Дата відкриття справи: {{ act.start_date }} <br /></p>
+
+
 
 {% endblock %}

@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ua">
 <head>
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}Єдиний реєстр підриємств{% endblock %}</title>
 </head>
-<body>
 
-    <div>
+<body>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static "1.css" %}">
+    <div id="a2">
       {% if user.is_anonymous %}
-      <a href="{% url 'django.contrib.auth.views.login' %}">login</a>
+      <a href="{% url 'django.contrib.auth.views.login' %}">Логін</a>
       {% else %}
-      <a href="{% url 'django.contrib.auth.views.logout' %}">logout</a>
+      <a href="{% url 'django.contrib.auth.views.logout' %}">Вийти</a>
       {% endif %}
     </div>
 
-    <h1>Register</h1>
+    <h1 id="id1">Єдиний реєстр підприємств, щодо яких порушено провадження у справі про банкрутство</h1>
     {% block content %}{% endblock %}
     {% block footer %}
     <hr>
-    <p>Boliachiy and other.</p>
+    <p id="line">Болячий та інші.</p>
     {% endblock %}
 </body>
 </html>

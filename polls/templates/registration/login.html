@@ -3,26 +3,26 @@
 {% block content %}
 
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<p>Ваше ім'я користувача та пароль не вірні. Сробуйте ще раз.</p>
 {% endif %}
-    {% if  user.is_anonymous %}
-    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
-    {% csrf_token %}
-    <table>
-    <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-    </tr>
-    <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-    </tr>
+
+<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+{% csrf_token %}
+
+    <table align="center">
+        <tr>
+
+            <td class="label" >Логін</td>
+            <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td class="label">Пароль</td>
+            <td>{{ form.password }}</td>
+        </tr>
     </table>
 
-    <input type="submit" value="login" />
-    <input type="hidden" name="next" value="{{ next }}" />
+<input type="submit" value="Логін" />
+<input type="hidden" name="next" value="{{ next }}" />
 </form>
-    {% else %}
-        Welcome!
-  {% endif %}
+
 {% endblock %}
