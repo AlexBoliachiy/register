@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^logout/', logout),
     url(r'^admin/', admin.site.urls),
     url(r'^acts/', acts),
-    url(r'^/', index),
-    url(r'^act/[0-9]+/', )
+    url(r'^&', index),
+    url(r'^act/(\d+)/', act)
 
 ]

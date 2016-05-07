@@ -8,6 +8,10 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
+class Department(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
+
+
 class Certificate(models.Model):
     exam_complete_date = models.DateField()
     id_exam_protocol = models.CharField(max_length=8)
@@ -44,6 +48,7 @@ class Arbitration(models.Model):
     office_location = models.CharField(max_length=6)
     activity_info = models.TextField()
     name_register = models.CharField(max_length=64)
+    dep = models.ForeignKey(Department, default=None, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return str(self.certificate)

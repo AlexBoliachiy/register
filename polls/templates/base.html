@@ -6,7 +6,6 @@
 <body>
 
     <div>
-      {{ user }}
       {% if user.is_anonymous %}
       <a href="{% url 'django.contrib.auth.views.login' %}">login</a>
       {% else %}
