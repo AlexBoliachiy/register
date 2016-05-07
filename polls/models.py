@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 
 class Department(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
+    location = models.CharField(max_length=64)
 
 
 class Certificate(models.Model):
