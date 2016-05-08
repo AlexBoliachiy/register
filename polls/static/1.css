@@ -1,19 +1,32 @@
-h1{
+th{
     text-align:center;
-    font-family: arial, verdana, sans-serif;
-    font-size: 36pt;
+    font-size: 14pt;
+    color: black;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px;
 }
 
 .info{
-text-align:center;
-font-size: 16pt;
-color: black;
-font-weight: bold;
+    text-align:center;
+    font-size: 14pt;
+    color: black;
+    font-weight: normal;
+    text-align: left;
+    padding: 8px;
+}
+
+table{
+    margin: auto;
 }
 
 #id1{
+    text-align: center;
     color:black;
-    font-size: 30pt;
+    font-size: 16pt;
+    margin-top: 0.5%;
+    font-size: 20pt;
+    font-family: Comic Sans MS;
 }
 
 body{
@@ -21,6 +34,10 @@ body{
     background-attachment: fixed;
     background-position: center;
     background-size: cover; /* ������������ ��� */
+}
+
+#main{
+    min-height: 1024px;
 }
 
 #a1{
@@ -31,12 +48,19 @@ body{
 }
 
 #a2 a{
-    color: #0000CD;
+    color: #FFFF00;
+    font-weight: normal;
     font-size: 16pt;
     text-align: right;
     font-weight: 600;
+    padding-top: 0.1px;
     display: block;
 }
+
+#a2 a:hover{
+    font-weight: normal;
+}
+
 
 #logout{
     color: black;
@@ -47,6 +71,7 @@ body{
 
 #line{
     text-align: center;
+    margin-bottom: -25px;
 }
 
 input[type=text], input[type=password]{

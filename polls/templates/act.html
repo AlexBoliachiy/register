@@ -8,10 +8,60 @@
     чтобы не просто тупо выводились значения, а еще и было понятно
     что они означают.
     {% endcomment %}
-    <p class="info">Ім'я боржника: {{ "    " }}{{ act.person }} <br /></p>
-    <p class="info">Дата відкриття справи: {{ act.start_date }} <br /></p>
-    <p class="info">Дата відкриття справи: {{ act.start_date }} <br /></p>
 
-
+<table >
+    <tr>
+        <th>Ім'я боржника:</th>
+        <td class="info">{{ act.person.name }}</td>
+    </tr>
+    <tr>
+        <th>Дата відкриття справи:</th>
+        <td class="info">{{ act.start_date }}</td>
+    </tr>
+    <tr>
+        <th>Дата завершення справи у суді:</th>
+        <td class="info">{{ act.finish_jud_date }}</td>
+    </tr>
+    <tr>
+         <th>Інформація щодо справи:</th>
+         <td class="info">{{ act.info_processing}}</td>
+    </tr>
+    <tr>
+         <th>Дата завершення справи:</th>
+         <td class="info">{{ act.end_date}}</td>
+    </tr>
+    <tr>
+         <th>Номер арбітражного керуючого:</th>
+         <td class="info">{{ act.arbitration}}</td>
+    </tr>
+    <tr>
+         <th>Адреса суду:</th>
+         <td class="info">{{act.jud_id_judge.adress}}</td>
+    </tr>
+    <tr>
+         <th>Назва суду :</th>
+         <td class="info">{{act.jud_id_judge.name}}</td>
+    </tr>
+    <tr>
+         <th>Ім'я судді:</th>
+         <td class="info">{{act.jud_id_judge.judge_name}}</td>
+    </tr>
+    <tr>
+         <th>Статус арбітражного керуючого:</th>
+         <td class="info">{{act.arbitr_status}}</td>
+    </tr>
+    <tr>
+         <th>Дата призначення арбітражного керуючого:</th>
+         <td class="info">{{ act.arbitr_start}}</td>
+    </tr>
+    <tr>
+         <th>Список кредиторів:</th>
+         <td class="info">{{ act.list_creditors}}</td>
+    </tr>
+    <tr>
+         <th>Вимоги кредиторів:</th>
+         <td class="info">{{ act.creditor_requirements}}</td>
+    </tr>
+</table>
 
 {% endblock %}

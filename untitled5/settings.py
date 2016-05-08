@@ -81,8 +81,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'register',
         'USER': 'root',
-        'PASSWORD': 'admin',
-        'PORT': '228',
+        'PASSWORD': '5730518',
+        'PORT': '3306',
         'OPTIONS': {"init_command": "SET foreign_key_checks = 0;", }
 
     }
