@@ -23,11 +23,8 @@ urlpatterns = [
     url(r'^login/', login),
     url(r'^logout/', logout),
     url(r'^admin/', admin.site.urls),
-    url(r'^acts/$', acts),
-    url(r'^acts/(\d+)/$', acts),
-    url(r'^$', index),
-    url(r'^act/(?P<pk>[0-9]+)/$', act),
-    url(r'^arbitrates/$', arbitrates),
-    url(r'^createarbitrate/$', new_arbitrate)
+    url(r'^acts/', acts),
+    url(r'^&', index),
+    url(r'^act/(\d+)/', act)
 
 ]

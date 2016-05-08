@@ -1,11 +1,11 @@
-﻿?{% extends "base.html" %}
+﻿{% extends "base.html" %}
 
 {% block content %}
 
 {% if form.errors %}
-<p> Ваше ім'я користувача або пароль не вірні. Спробуйте ще раз.</p>
+<p>Ваше ім'я користувача або пароль не вірні. Сробуйте ще раз.</p>
 {% endif %}
-{% if  user.is_anonymous %}
+
 <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
 {% csrf_token %}
 
@@ -16,15 +16,13 @@
             <td>{{ form.username }}</td>
         </tr>
         <tr>
-            <td class="label">Пароль</td> {# Please, change this value becouse if I do that, will happend conflict encodings #}
+            <td class="label">Пароль</td>
             <td>{{ form.password }}</td>
         </tr>
     </table>
 
-<input type="submit" value="login" />
+<input type="submit" value="Логін" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
-{% else %}
 
-{% endif %}
 {% endblock %}
