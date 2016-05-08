@@ -13,7 +13,7 @@
     <module name="untitled5" />
     <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
-    <option name="PARAMETERS" value="runserver" />
+    <option name="PARAMETERS" value="shell" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <method />
   </configuration>

@@ -54,10 +54,9 @@ class Arbitration(models.Model):
     def __str__(self):
         return str(self.certificate)
 
-    def add(self, acrivity_info, full_name, dismissal_date, office_location, organization_field, name_register,
+    def add(self, acrivity_info, dismissal_date, office_location, organization_field, name_register,
             certificate):
         self.activity_info = acrivity_info
-        self.full_name = full_name
         self.dismissal_date = dismissal_date
         self.office_location = office_location
         self.organization_field = organization_field
