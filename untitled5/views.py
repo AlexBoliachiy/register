@@ -36,6 +36,8 @@ def act(request, pk):
 
 
 def arbitrates(request):
+    if request.user.is_anonymous():
+        return HttpResponseForbidden()
     if request.user.department is not None:
         list_arbitr = request.user.department.arbitration_set.all()
         return render_to_response("arbitrates.html", {'list_arbitrates': list_arbitr,
@@ -45,6 +47,8 @@ def arbitrates(request):
 
 
 def new_arbitrate(request):
+    if request.user.is_anonymous():
+        return HttpResponseForbidden()
     if request.user.department is not None:
         if request.method == 'POST':
             pdn_h = PdnForm(request.POST, prefix='pdn')
