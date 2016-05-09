@@ -30,7 +30,6 @@ class CertForm(forms.ModelForm):
 
 
 class ArbitrateForm(forms.ModelForm):
-
     class Meta:
         model = Arbitration
         fields = ('activity_info', 'dismissal_date', 'office_location', 'organization_field',

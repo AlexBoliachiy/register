@@ -44,7 +44,7 @@ body{
 }
 
 .a2 a{
-    color: #FFFF00;
+    color: #ffe32f;
     font-weight: normal;
     font-size: 16pt;
     text-align: right;
@@ -56,14 +56,14 @@ body{
 
 #arb{
     text-align: center;
-    font-weight:
+    font-weight: normal;
     text-decoration: none;
     color: blue;
 }
 
 .a2 a:hover {
     color: hotpink;
-    font-weight: normal;
+    font-weight: bold;
 }
 
 #logout{
