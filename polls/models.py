@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 
 class Department(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None, null=True)
     location = models.CharField(max_length=64)
 
 
@@ -49,7 +49,7 @@ class Arbitration(models.Model):
     office_location = models.CharField(max_length=6)
     activity_info = models.TextField()
     name_register = models.CharField(max_length=64)
-    dep = models.ForeignKey(Department, default=None, on_delete=models.DO_NOTHING)
+    dep = models.ForeignKey(Department, default=None, on_delete=models.DO_NOTHING, null=True)
 
     def __str__(self):
         return str(self.certificate)
