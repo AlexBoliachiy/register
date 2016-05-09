@@ -53,10 +53,12 @@ body{
     display: block;
     text-decoration: none;
 }
-
 #arb{
+<<<<<<< HEAD
     text-align: center;
     font-weight: normal;
+=======
+>>>>>>> b372c30b6c6fdb5adbc5453fdd95904ec05f9283
     text-decoration: none;
     color: blue;
 }
@@ -118,6 +120,16 @@ input[type=submit]:hover {
     text-align: center;
     font-size: 16pt;
     font-weight: normal;
+    width: 100%;
+    float: left;
+}
+
+li{
+    list-style-type: circle;
+    color: blue;
+    float: left;
+    margin-left: 45%;
+    padding-top: 1%;
 }
 
 
