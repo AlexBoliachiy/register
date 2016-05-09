@@ -1,7 +1,9 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, RequestContext
 from polls.models import *
 from django.http import  HttpResponseForbidden
 from .creating_arbitrate_form import *
+from django.shortcuts import redirect
+from django.views.decorators.csrf import *
 
 
 def index(request):
@@ -34,6 +36,8 @@ def act(request, pk):
 
 
 def arbitrates(request):
+    if request.user.is_anonymous():
+        return HttpResponseForbidden()
     if request.user.department is not None:
         list_arbitr = request.user.department.arbitration_set.all()
         return render_to_response("arbitrates.html", {'list_arbitrates': list_arbitr,
@@ -43,25 +47,40 @@ def arbitrates(request):
 
 
 def new_arbitrate(request):
+    if request.user.is_anonymous():
+        return HttpResponseForbidden()
     if request.user.department is not None:
         if request.method == 'POST':
-            pdn = PdnForm(request.POST, prefix='pdn')
-            cert = CertForm(request.POST, prefix='certificate') # WARNING! THERE CAN BE ERROR
-            arbitrate = ArbitrateForm(request.POST, prefix='arbitrate')
-            if cert.is_valid() and arbitrate.is_valid() and pdn.is_valid():
-                user = User.objects.create_user(pdn.login, None, pdn.password)
-                user.first_name = pdn.first_name
-                user.last_name = pdn.last_name
-                u = user.save(commit=False)
-                c = cert.save()
-                a = arbitrate.save(commit=False)
-                a.certificate = c
-                u.arbitration = a
-                a.save()
-                u.save()
+            pdn_h = PdnForm(request.POST, prefix='pdn')
+            cert_h = CertForm(request.POST, prefix='cert')  # WARNING! THERE CAN BE ERROR
+            arb_h = ArbitrateForm(request.POST, prefix='arbitrate')
+            if cert_h.is_valid() and arb_h.is_valid() and pdn_h.is_valid():
+                user = User.objects.create_user(pdn_h.cleaned_data.get('login'), None,
+                                                pdn_h.cleaned_data.get('password'))
+                user.first_name = pdn_h.cleaned_data.get('first_name')
+                user.last_name = pdn_h.cleaned_data.get('last_name')  # Немного быдлокодерский путь получать поля так.
+                try:
+                    c = cert_h.save()
+                    request.user.department.arbitration_set.create(certificate=c, user=user,
+                                                                   activity_info=arb_h.cleaned_data.get('activity_info'),
+                                                                   dismissal_date=arb_h.cleaned_data.get('dismissal_date'),
+                                                                   office_location=arb_h.cleaned_data.get('office_location'),
+                                                                   organization_field=arb_h.cleaned_data.get('organization_field'),
+                                                                   name_register=arb_h.cleaned_data.get('name_register'),
+                                                                   )
+                    user.save()
+                except BaseException as exc:
+                    print(exc)
+                    user.delete()
+                    c.delete()
+                return redirect("//arbitrates")
         else:
-            return render_to_response("createarbitrate.html", {"pdn": PdnForm(), "cert": CertForm(),
-                                                               "arbitrate": ArbitrateForm})
+            print("first")
+            pdn_h = PdnForm(prefix='pdn')
+            cert_h = CertForm(prefix='cert')
+            arb_h = ArbitrateForm(prefix='arbitrate')
+        return render_to_response("createarbitrate.html", {"pdn": pdn_h,
+                                  "cert": cert_h, "arbitrate": arb_h, }, context_instance=RequestContext(request))
 
     else:
         return HttpResponseForbidden()
