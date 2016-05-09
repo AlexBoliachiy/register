@@ -1,9 +1,12 @@
 ﻿{% extends "base.html" %}
 
 {% block content %}
-    {{ location}} {# Типо локация определяет департамент, ибо  у департаментов нету имен *крайнее негодование* #}
-    Your arbitrates:
+<div id="arbitr" >
+    {{ location}}</br>
+    {# Типо локация определяет департамент, ибо  у департаментов нету имен *крайнее негодование* #}
+    Ваш арбітражний керуючий:
     {%  for arbitr in list_arbitrates %}
-        <a href="/acts/{{ arbitr.id }}/">{{ arbitr.user.get_full_name }}</a>
+        <a class="arb"  href="/acts/{{ arbitr.id }}/">{{ arbitr.user.get_full_name }}</a>
     {% endfor %}
+    </div>
 {% endblock %}
