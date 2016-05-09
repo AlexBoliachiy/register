@@ -1,4 +1,5 @@
 th{
+    text-align:center;
     font-size: 14pt;
     color: black;
     font-weight: bold;
@@ -7,6 +8,7 @@ th{
 }
 
 .info{
+    text-align:center;
     font-size: 14pt;
     color: black;
     font-weight: normal;
@@ -34,6 +36,10 @@ body{
     background-size: cover; /* ������������ ��� */
 }
 
+#main{
+    min-height: 1024px;
+}
+
 #a1{
     color:black;
     font-size: 16pt;
@@ -41,7 +47,7 @@ body{
     display: block;
 }
 
-.a2 a{
+#a2 a{
     color: #FFFF00;
     font-weight: normal;
     font-size: 16pt;
@@ -51,22 +57,10 @@ body{
     display: block;
 }
 
-a:link
-{
-    text-decoration: none;
+#a2 a:hover{
+    font-weight: normal;
 }
-a:hover
-{
-    color: #00FF00;
-}
-a.arb:hover
-{
-    color: #8B008B;
-}
-a:active
-{
-    color: blue;
-}
+
 
 #logout{
     color: black;
@@ -75,8 +69,12 @@ a:active
     font-weight: 600;
 }
 
-input[type=text], input[type=password]
-{
+#line{
+    text-align: center;
+    margin-bottom: -25px;
+}
+
+input[type=text], input[type=password]{
     width: 100%;
     text-align: center;
     font-size: 14pt;
@@ -88,8 +86,7 @@ input[type=text], input[type=password]
     box-sizing: border-box;
 }
 
-input[type=submit]
-{
+input[type=submit] {
     width: 20%;
     background-color: #4CAF50;
     color: white;
@@ -101,25 +98,15 @@ input[type=submit]
     margin-left: 575px;
 }
 
-.label
-{
+.label{
     color: black;
     font-size: 16pt;
     font-weight: bold;
 }
 
 
-input[type=submit]:hover
-{
+input[type=submit]:hover {
     background-color: #45a049;
-}
-
-#arbitr
-{
-    text-align: center;
-    line-height: 200%;
-    font-size: 16pt;
-
 }
 
 
