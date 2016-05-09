@@ -53,10 +53,7 @@ body{
     display: block;
     text-decoration: none;
 }
-
 #arb{
-    text-align: center;
-    font-weight:
     text-decoration: none;
     color: blue;
 }
@@ -118,6 +115,16 @@ input[type=submit]:hover {
     text-align: center;
     font-size: 16pt;
     font-weight: normal;
+    width: 100%;
+    float: left;
+}
+
+li{
+    list-style-type: circle;
+    color: blue;
+    float: left;
+    margin-left: 45%;
+    padding-top: 1%;
 }
 
 
