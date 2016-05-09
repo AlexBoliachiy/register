@@ -6,7 +6,12 @@
     {# Типо локация определяет департамент, ибо  у департаментов нету имен *крайнее негодование* #}
     Ваш арбітражний керуючий:
     {%  for arbitr in list_arbitrates %}
+    <ul>
+    <li>
         <a id="arb" href="/acts/{{ arbitr.id }}/">{{ arbitr.user.get_full_name }}</a>
+        <hr>
+    </li>
+    </ul>
     {% endfor %}
 </div>
 {% endblock %}
