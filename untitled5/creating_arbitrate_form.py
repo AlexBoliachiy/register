@@ -11,6 +11,8 @@ class PdnForm(forms.Form):
     repeat_password = forms.CharField(max_length=30, widget=forms.PasswordInput())
 
     def clean(self):
+        if User.objects.filter(username=self.cleaned_data.get('login')).exists():
+            raise forms.ValidationError("This username already exists")
         if self.cleaned_data.get('password') != self.cleaned_data.get('repeat_password'):
             raise forms.ValidationError('Password did\'nt match')
         else:

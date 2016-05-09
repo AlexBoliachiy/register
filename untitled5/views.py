@@ -1,9 +1,10 @@
 from django.shortcuts import render_to_response, RequestContext
-from polls.models import *
-from django.http import HttpResponseForbidden, HttpResponseRedirect
+from django.http import HttpResponseForbidden
 from .creating_arbitrate_form import *
 from django.shortcuts import redirect
-from django.views.decorators.csrf import *
+from django.contrib.auth.views import login
+from django.core.exceptions import ObjectDoesNotExist
+
 
 
 def index(request):
@@ -18,10 +19,11 @@ def acts(request, pk=0):
         list_acts = list()
         list_acts.append(Act.objects.get(arbitration=request.user.arbitration))
         return render_to_response("acts.html", {'list_acts': list_acts, "name": request.user.get_full_name()})
-    elif Arbitration.objects.get(pk=pk).dep == request.user.department:
+    elif Arbitration.objects.filter(pk=pk)[0].dep == request.user.department:
         list_acts = list()
-        arbitrate = request.user.department.arbitration_set.get(pk=pk)
-        list_acts.append(Act.objects.get(arbitration=arbitrate))
+        arbitrate = request.user.department.arbitration_set.filter(pk=pk)[0]
+        if arbitrate is not None:
+            list_acts = Act.objects.filter(arbitration=arbitrate)
         return render_to_response("acts.html", {'list_acts': list_acts, "name": arbitrate.user.get_full_name()})
     else:
         return HttpResponseForbidden()
@@ -39,7 +41,7 @@ def arbitrates(request):
     if request.user.is_anonymous():
         return HttpResponseForbidden()
     if request.user.department is not None:
-        list_arbitr = request.user.department.arbitration_set.all()
+        list_arbitr = request.user.department.arbitration_set.filter()
         return render_to_response("arbitrates.html", {'list_arbitrates': list_arbitr,
                                                       'location': request.user.department.location})
     else:
@@ -55,8 +57,6 @@ def new_arbitrate(request):
             cert_h = CertForm(request.POST, prefix='cert')  # WARNING! THERE CAN BE ERROR
             arb_h = ArbitrateForm(request.POST, prefix='arbitrate')
             if cert_h.is_valid() and arb_h.is_valid() and pdn_h.is_valid():
-                if User.objects.get(username=pdn_h.cleaned_data.get('login')) is not None:
-                    return HttpResponseRedirect("This username already using")
                 user = User.objects.create_user(pdn_h.cleaned_data.get('login'), None,
                                                 pdn_h.cleaned_data.get('password'))
                 user.first_name = pdn_h.cleaned_data.get('first_name')
@@ -83,3 +83,20 @@ def new_arbitrate(request):
 
     else:
         return HttpResponseForbidden()
+
+
+def home(request):
+    print("wtf")
+    if request.user.is_anonymous():
+        return redirect(login)
+    success = False
+    try:
+        if request.user.department is not None:
+            pass
+    except ObjectDoesNotExist:
+        success = True
+
+    if not success:
+        return redirect(arbitrates)
+    else:
+        return redirect(acts)
