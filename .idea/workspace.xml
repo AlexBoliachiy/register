@@ -35,8 +35,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/polls/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.034483">
-              <caret line="48" column="14" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
+            <state vertical-scroll-proportion="-4.172414">
+              <caret line="114" column="10" selection-start-line="114" selection-start-column="9" selection-end-line="114" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -48,6 +48,18 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/untitled5/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.173028">
+              <caret line="64" column="79" selection-start-line="64" selection-start-column="79" selection-end-line="64" selection-end-column="79" />
+              <folding>
+                <element signature="e#0#63#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -73,32 +85,20 @@
         </entry>
       </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/untitled5/views.py">
+        <entry file="file://$PROJECT_DIR$/polls/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="65" column="67" selection-start-line="65" selection-start-column="67" selection-end-line="65" selection-end-column="67" />
-              <folding>
-                <element signature="e#0#63#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="creating_arbitrate_form.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/untitled5/creating_arbitrate_form.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17302799">
-              <caret line="12" column="10" selection-start-line="12" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="createarbitrate.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/polls/templates/createarbitrate.html">
+      <file leaf-file-name="creating_arbitrate_form.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/untitled5/creating_arbitrate_form.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2692308">
-              <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -169,9 +169,9 @@
         <option value="$PROJECT_DIR$/polls/templates/createarbitrate.html" />
         <option value="$PROJECT_DIR$/polls/admin.py" />
         <option value="$PROJECT_DIR$/untitled5/creating_arbitrate_form.py" />
-        <option value="$PROJECT_DIR$/untitled5/views.py" />
         <option value="$PROJECT_DIR$/polls/migrations/0010_remove_arbitration_dep.py" />
         <option value="$PROJECT_DIR$/polls/models.py" />
+        <option value="$PROJECT_DIR$/untitled5/views.py" />
       </list>
     </option>
   </component>
@@ -641,7 +641,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25036603" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -966,24 +966,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/polls/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/untitled5/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="67" selection-start-line="65" selection-start-column="67" selection-end-line="65" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/polls/templates/createarbitrate.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.2692308">
@@ -1040,19 +1022,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/polls/models.py">
+    <entry file="file://$PROJECT_DIR$/untitled5/creating_arbitrate_form.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.034483">
-          <caret line="48" column="14" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/untitled5/creating_arbitrate_form.py">
+    <entry file="file://$PROJECT_DIR$/polls/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17302799">
-          <caret line="12" column="10" selection-start-line="12" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state vertical-scroll-proportion="-4.172414">
+          <caret line="114" column="10" selection-start-line="114" selection-start-column="9" selection-end-line="114" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/polls/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/untitled5/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.173028">
+          <caret line="64" column="79" selection-start-line="64" selection-start-column="79" selection-end-line="64" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

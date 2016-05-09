@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response, RequestContext
 from polls.models import *
-from django.http import  HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 from .creating_arbitrate_form import *
 from django.shortcuts import redirect
 from django.views.decorators.csrf import *
@@ -51,25 +51,24 @@ def new_arbitrate(request):
             cert_h = CertForm(request.POST, prefix='cert')  # WARNING! THERE CAN BE ERROR
             arb_h = ArbitrateForm(request.POST, prefix='arbitrate')
             if cert_h.is_valid() and arb_h.is_valid() and pdn_h.is_valid():
+                if User.objects.get(username=pdn_h.cleaned_data.get('login')) is not None:
+                    return HttpResponseRedirect("This username already using")
                 user = User.objects.create_user(pdn_h.cleaned_data.get('login'), None,
                                                 pdn_h.cleaned_data.get('password'))
                 user.first_name = pdn_h.cleaned_data.get('first_name')
                 user.last_name = pdn_h.cleaned_data.get('last_name')  # Немного быдлокодерский путь получать поля так.
-                try:
-                    c = cert_h.save()
-                    request.user.department.arbitration_set.create(certificate=c, user=user,
-                                                                   activity_info=arb_h.cleaned_data.get('activity_info'),
-                                                                   dismissal_date=arb_h.cleaned_data.get('dismissal_date'),
-                                                                   office_location=arb_h.cleaned_data.get('office_location'),
-                                                                   organization_field=arb_h.cleaned_data.get('organization_field'),
-                                                                   name_register=arb_h.cleaned_data.get('name_register'),
-                                                                   )
-                    user.save()
-                except BaseException as exc:
-                    print(exc)
-                    user.delete()
-                    c.delete()
-                return redirect("//arbitrates")
+                c = cert_h.save()
+                request.user.department.arbitration_set.create(certificate=c, user=user,
+                                                               activity_info=arb_h.cleaned_data.get('activity_info'),
+                                                               dismissal_date=arb_h.cleaned_data.get('dismissal_date'),
+                                                               office_location=arb_h.cleaned_data.get('office_location'),
+                                                               organization_field=arb_h.cleaned_data.get('organization_field'),
+                                                               name_register=arb_h.cleaned_data.get('name_register'),
+                                                               )
+                # К сожалению менять пиздец сверху нет времени, хотя это и можно сделать.
+                # Если кто-то случайно захочет -- u r welcome
+                user.save()
+                return redirect(arbitrates)
         else:
             print("first")
             pdn_h = PdnForm(prefix='pdn')
