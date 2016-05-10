@@ -1,5 +1,6 @@
 import time
 
+
 def strTimeProp(start, end, format, prop):
     """Get a time at a proportion of a range of two formatted times.
 

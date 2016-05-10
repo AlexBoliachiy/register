@@ -15,13 +15,13 @@ class Department(models.Model):
 
 class Certificate(models.Model):
     exam_complete_date = models.DateField("Дата здачі екзамену")
-    id_exam_protocol = models.CharField("Номер екзаменацыйного протоколу",max_length=8)
+    id_exam_protocol = models.CharField("Номер екзаменацыйного протоколу", max_length=8)
     date_certificate_mju = models.DateField("Дата отримання сертифікату в МЮУ")
     date_certificate = models.DateField("Дата видачі сертифікату")
     info_quality = models.DateField("Дата отримання оцінки")
-    full_number = models.CharField("Номер сертифікату",max_length=13)
-    working_exp = models.IntegerField("Досвід роботи",default=0)
-    renewal_certificate = models.CharField("Відновлення сертифікату",max_length=64)
+    full_number = models.CharField("Номер сертифікату", max_length=13)
+    working_exp = models.IntegerField("Досвід роботи", default=0)
+    renewal_certificate = models.CharField("Відновлення сертифікату", max_length=64)
     audit = models.TextField("Аудит")
 
     def add(self, exam_complete_date, id_exam_protocol, date_certificate_mju, date_certificate, info_quality, full_number,
@@ -45,10 +45,10 @@ class Arbitration(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
     certificate = models.ForeignKey(Certificate, on_delete=models.CASCADE)
     dismissal_date = models.DateField("Дата звільнення")
-    organization_field = models.CharField("Назва організації",max_length=64)
-    office_location = models.CharField("Розміщення офісу",max_length=6)
+    organization_field = models.CharField("Назва організації", max_length=64)
+    office_location = models.CharField("Розміщення офісу", max_length=6)
     activity_info = models.TextField("Інформація щодо діяльності")
-    name_register = models.CharField("Ім'я регістратора",max_length=64)
+    name_register = models.CharField("Ім'я регістратора", max_length=64)
     dep = models.ForeignKey(Department, default=None, on_delete=models.DO_NOTHING, null=True)
 
     def __str__(self):
@@ -103,12 +103,13 @@ class Person(models.Model):
 
 
 class Act(models.Model):
+    is_active = models.BooleanField(default=True)
     start_date = models.DateField()
     finish_jud_date = models.DateField()
     info_processing = models.TextField()
     end_date = models.DateField()
-    arbitration = models.ForeignKey(Arbitration, on_delete=models.CASCADE)
-    jud_id_judge = models.ForeignKey(Jud)
+    arbitration = models.ForeignKey(Arbitration, on_delete=models.DO_NOTHING)
+    jud = models.ForeignKey(Jud)
     person = models.ForeignKey(Person)
     arbitr_status = models.CharField(max_length=64)
     arbitr_start = models.CharField(max_length=64)

@@ -12,7 +12,6 @@ def index(request):
 
 
 def acts(request, pk=0):
-    print(pk)
     if request.user.is_anonymous():
         return HttpResponseForbidden()
     elif pk == 0:
@@ -30,6 +29,8 @@ def acts(request, pk=0):
 
 
 def act(request, pk):
+    if request.user.is_anonymous():
+        return HttpResponseForbidden()
     current_act = Act.objects.get(pk=pk)
     if current_act.arbitration.user == request.user or current_act.arbitration.dep == request.user.department:
         return render_to_response("act.html", {"act": current_act})
@@ -40,10 +41,13 @@ def act(request, pk):
 def arbitrates(request):
     if request.user.is_anonymous():
         return HttpResponseForbidden()
-    if request.user.department is not None:
-        list_arbitr = request.user.department.arbitration_set.filter()
-        return render_to_response("arbitrates.html", {'list_arbitrates': list_arbitr,
-                                                      'location': request.user.department.location})
+    try:
+        if request.user.department is not None:
+            list_arbitr = request.user.department.arbitration_set.filter()
+            return render_to_response("arbitrates.html", {'list_arbitrates': list_arbitr,
+                                                          'location': request.user.department.location})
+    except ObjectDoesNotExist:
+        pass
     else:
         return HttpResponseForbidden()
 
@@ -74,7 +78,6 @@ def new_arbitrate(request):
                 user.save()
                 return redirect(arbitrates)
         else:
-            print("first")
             pdn_h = PdnForm(prefix='pdn')
             cert_h = CertForm(prefix='cert')
             arb_h = ArbitrateForm(prefix='arbitrate')
@@ -86,7 +89,6 @@ def new_arbitrate(request):
 
 
 def home(request):
-    print("wtf")
     if request.user.is_anonymous():
         return redirect(login)
     success = False
@@ -100,3 +102,13 @@ def home(request):
         return redirect(arbitrates)
     else:
         return redirect(acts)
+
+
+def new_act(request):
+    if request.user.is_anonymous():
+        return redirect(login)
+    elif request.user.arbitration is not None:
+        return HttpResponseForbidden()
+    else:
+        if request.method == 'POST':
+            pass
