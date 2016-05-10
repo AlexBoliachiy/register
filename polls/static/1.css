@@ -36,10 +36,6 @@ body{
     background-size: cover; /* ������������ ��� */
 }
 
-#main{
-    min-height: 1024px;
-}
-
 #a1{
     color:black;
     font-size: 16pt;
@@ -47,20 +43,30 @@ body{
     display: block;
 }
 
-#a2 a{
-    color: #FFFF00;
+.a2 a{
+    color: #ffe32f;
     font-weight: normal;
     font-size: 16pt;
     text-align: right;
     font-weight: 600;
     padding-top: 0.1px;
     display: block;
+    text-decoration: none;
 }
-
-#a2 a:hover{
+#arb{
+<<<<<<< HEAD
+    text-align: center;
     font-weight: normal;
+=======
+>>>>>>> b372c30b6c6fdb5adbc5453fdd95904ec05f9283
+    text-decoration: none;
+    color: blue;
 }
 
+.a2 a:hover {
+    color: hotpink;
+    font-weight: bold;
+}
 
 #logout{
     color: black;
@@ -107,6 +113,23 @@ input[type=submit] {
 
 input[type=submit]:hover {
     background-color: #45a049;
+}
+
+#arbitr
+{
+    text-align: center;
+    font-size: 16pt;
+    font-weight: normal;
+    width: 100%;
+    float: left;
+}
+
+li{
+    list-style-type: circle;
+    color: blue;
+    float: left;
+    margin-left: 45%;
+    padding-top: 1%;
 }
 
 

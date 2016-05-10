@@ -54,7 +54,17 @@ class ViewTest(TestCase):
     def test_arbitration_user_no_department_response(self):
         request = RequestFactory().get('/login/')
         request.user = User.objects.create_user(username="jack", password="secret")
-        request.user.department = None
+        certificate = Certificate()
+        certificate.exam_complete_date = rand_gen.randomDate("2008-1-1", "2009-1-1", random.random())
+        certificate.date_certificate_mju = rand_gen.randomDate("2009-1-1", "2010-1-1", random.random())
+        certificate.date_certificate = rand_gen.randomDate("2009-1-1", "2010-1-1", random.random())
+        certificate.info_quality = rand_gen.randomDate("2009-1-1", "2010-1-1", random.random())
+        certificate.save()
+        arbitre = Arbitration()
+        arbitre.dismissal_date = rand_gen.randomDate("2009-1-1", "2010-1-1", random.random())
+        arbitre.certificate = certificate
+        arbitre.user = request.user
+        arbitre.save()
         self.assertEqual(arbitrates(request).status_code, HttpResponseForbidden.status_code)
 
     def test_act_user_departments_response(self):

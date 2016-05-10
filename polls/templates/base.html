@@ -8,7 +8,7 @@
 <div id="main">
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static "1.css" %}">
-    <div id="a2">
+    <div class="a2">
       {% if user.is_anonymous %}
       <a href="{% url 'django.contrib.auth.views.login' %}">Логін</a>
       {% else %}
