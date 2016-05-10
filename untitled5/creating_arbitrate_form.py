@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import modelformset_factory
 from polls.models import *
 
 

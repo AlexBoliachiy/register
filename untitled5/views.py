@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response, RequestContext
 from django.http import HttpResponseForbidden
 from .creating_arbitrate_form import *
+from .creating_act_form import *
 from django.shortcuts import redirect
 from django.contrib.auth.views import login
 from django.core.exceptions import ObjectDoesNotExist
@@ -22,7 +23,7 @@ def acts(request, pk=0):
         list_acts = list()
         arbitrate = request.user.department.arbitration_set.filter(pk=pk)[0]
         if arbitrate is not None:
-            list_acts = Act.objects.filter(arbitration=arbitrate)
+            list_acts = Act.objects.filter(arbitration=arbitrate).order_by('is_active', 'start_date')
         return render_to_response("acts.html", {'list_acts': list_acts, "name": arbitrate.user.get_full_name()})
     else:
         return HttpResponseForbidden()
@@ -58,7 +59,7 @@ def new_arbitrate(request):
     if request.user.department is not None:
         if request.method == 'POST':
             pdn_h = PdnForm(request.POST, prefix='pdn')
-            cert_h = CertForm(request.POST, prefix='cert')  # WARNING! THERE CAN BE ERROR
+            cert_h = CertForm(request.POST, prefix='cert')
             arb_h = ArbitrateForm(request.POST, prefix='arbitrate')
             if cert_h.is_valid() and arb_h.is_valid() and pdn_h.is_valid():
                 user = User.objects.create_user(pdn_h.cleaned_data.get('login'), None,
@@ -104,11 +105,45 @@ def home(request):
         return redirect(acts)
 
 
+def is_arbitrate(user):
+    tmp = True
+    try:
+        if user.arbitration is not None:
+            pass
+    except ObjectDoesNotExist:
+        tmp = False
+    return tmp
+
+
 def new_act(request):
     if request.user.is_anonymous():
         return redirect(login)
-    elif request.user.arbitration is not None:
+
+    if is_arbitrate(request.user):
         return HttpResponseForbidden()
+
+    if request.method == 'POST':
+        person = PersonForm(request.POST, prefix="person")
+        jud = JudForm(request.POST, prefix='jud')
+        _act = ActForm(request.POST, prefix='act')
+        if person.is_valid() and jud.is_valid() and _act.is_valid():
+            person = person.save()
+            jud = jud.save()
+            print(jud.name)
+            _act = _act.save(commit=False)
+            _act.person = person
+            _act.jud = jud
+            _act.save()
+            print("success!")
+            return redirect(arbitrates)
     else:
-        if request.method == 'POST':
-            pass
+        person = PersonForm(prefix='person')
+        jud = JudForm(prefix='jud')
+        ActForm.base_fields['arbitration'] = forms.ModelChoiceField(queryset=request.user.department.arbitration_set)
+        _act = ActForm(prefix='act')
+
+    return render_to_response("createact.html", {'person': person, 'jud': jud, 'act': _act},
+                              context_instance=RequestContext(request))
+
+
+

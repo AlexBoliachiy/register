@@ -1,10 +1,6 @@
-from django.db import models
-
 # Create your models here.
-import datetime
 
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User
 
 
@@ -42,7 +38,8 @@ class Certificate(models.Model):
 
 
 class Arbitration(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None,
+                                null=True, verbose_name='Арбітражний керуючий')
     certificate = models.ForeignKey(Certificate, on_delete=models.CASCADE)
     dismissal_date = models.DateField("Дата звільнення")
     organization_field = models.CharField("Назва організації", max_length=64)
@@ -109,10 +106,10 @@ class Act(models.Model):
     info_processing = models.TextField()
     end_date = models.DateField()
     arbitration = models.ForeignKey(Arbitration, on_delete=models.DO_NOTHING)
-    jud = models.ForeignKey(Jud)
-    person = models.ForeignKey(Person)
+    jud = models.ForeignKey(Jud, on_delete=models.CASCADE)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
     arbitr_status = models.CharField(max_length=64)
-    arbitr_start = models.CharField(max_length=64)
+    arbitr_start = models.DateField()
     list_creditors = models.TextField()
     creditor_requirements = models.TextField()
 
