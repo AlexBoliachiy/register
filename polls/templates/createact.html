@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Додавання нової справи до реєстру{% endblock %}
+{% block content %}
+    <form action="/createact/" method="post">
+    {% csrf_token %}
+    <table>
+        {{ act }}
+        {{ jud }}
+        {{ person }}
+    </table>
+    <input type="submit" value="OK">
+    </form>
+
+{% endblock %}
+
