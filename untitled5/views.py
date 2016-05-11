@@ -2,10 +2,10 @@ from django.shortcuts import render_to_response, RequestContext
 from django.http import HttpResponseForbidden
 from .creating_arbitrate_form import *
 from .creating_act_form import *
+from .change_act import ChangeActForm
 from django.shortcuts import redirect
 from django.contrib.auth.views import login
 from django.core.exceptions import ObjectDoesNotExist
-
 
 
 def index(request):
@@ -144,6 +144,29 @@ def new_act(request):
 
     return render_to_response("createact.html", {'person': person, 'jud': jud, 'act': _act},
                               context_instance=RequestContext(request))
+
+
+def change_act(request, pk):
+
+    if request.user.is_anonymous():
+        return redirect(login)
+
+    if is_arbitrate(request.user):
+        return HttpResponseForbidden()
+
+    if request.method == 'POST':
+        _act = ChangeActForm(request.POST, prefix='act')
+        if _act.is_valid():
+            _act.save(commit=False)
+            current_act = Act.objects.get(pk=pk)
+            current_act.start_date = _act.cleaned_data.get('start_date')
+            current_act.end_date = _act.cleaned_dsta.get('end_date')
+
+            return redirect(arbitrates)
+    else:
+        _act = ActForm(prefix='act')
+
+    return render_to_response("createact.html", {'act', act}, context_instance=RequestContext(request))
 
 
 

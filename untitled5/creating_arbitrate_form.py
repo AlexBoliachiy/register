@@ -8,17 +8,9 @@ class PdnForm(forms.Form):
     first_name = forms.CharField(label=_('Ім\'я'),max_length=15)
     last_name = forms.CharField(label=_('Прізвище'),max_length=15)
     password = forms.CharField(label=_('Пароль'),max_length=30, widget=forms.PasswordInput())
-    repeat_password = forms.CharField(label=_('Повторіть пароль'),max_length=30, widget=forms.PasswordInput())
+    repeat_password = forms.CharField(label=_('Повторіть пароль'), max_length=30, widget=forms.PasswordInput())
 
     def clean(self):
-<<<<<<< HEAD
-        if User.objects.filter(username=self.cleaned_data.get('login')).exists():
-            raise forms.ValidationError("This username already exists")
-        if self.cleaned_data.get('password') != self.cleaned_data.get('repeat_password'):
-            raise forms.ValidationError('Password did\'nt match')
-        else:
-            return self.cleaned_data
-=======
         if self.cleaned_data.get('password') or self.cleaned_data.get('login') is not None:
             if self.cleaned_data.get('password') != self.cleaned_data.get('repeat_password'):
                 raise forms.ValidationError('Пароль не співпадає')
@@ -28,8 +20,6 @@ class PdnForm(forms.Form):
                 raise forms.ValidationError('Логін має бути не менше 5 символів')
             else:
                 return self.cleaned_data
-
->>>>>>> 4952d456ff6f97053de68bd5311c6904120559ff
 
 
 class CertForm(forms.ModelForm):
@@ -42,9 +32,6 @@ class CertForm(forms.ModelForm):
                    'date_certificate_mju': forms.SelectDateWidget(years=range(1990, 2017)),
                    'date_certificate': forms.SelectDateWidget(years=range(1990, 2017)),
                    'info_quality': forms.SelectDateWidget(years=range(1990, 2017))}
-
-
-
 
 
 class ArbitrateForm(forms.ModelForm):
