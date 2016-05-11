@@ -128,3 +128,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LANGUAGE_CODE = 'uk-UA'
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+)

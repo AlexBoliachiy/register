@@ -101,19 +101,6 @@ class Person(models.Model):
 
 class Act(models.Model):
     is_active = models.BooleanField(default=True)
-<<<<<<< HEAD
-    start_date = models.DateField()
-    finish_jud_date = models.DateField()
-    info_processing = models.TextField()
-    end_date = models.DateField()
-    arbitration = models.ForeignKey(Arbitration, on_delete=models.DO_NOTHING)
-    jud = models.ForeignKey(Jud, on_delete=models.CASCADE)
-    person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    arbitr_status = models.CharField(max_length=64)
-    arbitr_start = models.DateField()
-    list_creditors = models.TextField()
-    creditor_requirements = models.TextField()
-=======
     start_date = models.DateField(verbose_name="Початкова дата")
     finish_jud_date = models.DateField(verbose_name="Дата завершення справи у суді")
     info_processing = models.TextField(verbose_name="Інформація, щодо процесу")
@@ -125,7 +112,6 @@ class Act(models.Model):
     arbitr_start = models.DateField(verbose_name="Дата початку роботи")
     list_creditors = models.TextField(verbose_name="Список кредиторів")
     creditor_requirements = models.TextField(verbose_name="Вимоги кредиторів")
->>>>>>> baf1e5d04db5ac80a1cf2f92c8f80711431dc2c4
 
     def add(self, start_date, finish_jud_date, info_processing, end_date, arbitr_id, jud_id_date, person, arbitr_status,
             arbitr_start, list_creditors, creditor_requirements):

@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response, RequestContext
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, Http404
 from .creating_arbitrate_form import *
 from .creating_act_form import *
 from .change_act import ChangeActForm
@@ -148,10 +148,15 @@ def new_act(request):
 
 def change_act(request, pk):
 
+    print(pk)
     if request.user.is_anonymous():
         return redirect(login)
 
-    if is_arbitrate(request.user):
+    if len(Act.objects.filter(pk=pk)) == 0:
+        raise Http404
+    # не пугайтесь слеша, это типа продолжение строки
+    if request.user != Act.objects.get(pk=pk).arbitration.user \
+    and request.user != Act.objects.get(pk=pk).arbitration.dep:
         return HttpResponseForbidden()
 
     if request.method == 'POST':
@@ -160,13 +165,20 @@ def change_act(request, pk):
             _act.save(commit=False)
             current_act = Act.objects.get(pk=pk)
             current_act.start_date = _act.cleaned_data.get('start_date')
-            current_act.end_date = _act.cleaned_dsta.get('end_date')
-
-            return redirect(arbitrates)
+            current_act.end_date = _act.cleaned_data.get('end_date')
+            current_act.is_active = _act.cleaned_data.get('is_active')
+            current_act.info_processing = _act.cleaned_data.get('info_processing',)
+            current_act.creditor_requirements = _act.cleaned_data.get('creditor_requirements')
+            current_act.save()
+            print("redirect doesn't work")
+            return redirect('/act/' + str(pk) + '/')
     else:
-        _act = ActForm(prefix='act')
-
-    return render_to_response("createact.html", {'act', act}, context_instance=RequestContext(request))
+        current_act = Act.objects.get(pk=pk)
+        _act = ChangeActForm(initial={'start_date': current_act.start_date, 'end_date': current_act.end_date,
+                                      'info_processing': current_act.info_processing,
+                                      'is_active': current_act.is_active,
+                                      'creditor_requirements': current_act.creditor_requirements}, prefix='act')
+    return render_to_response("changeact.html", {'act': _act}, context_instance=RequestContext(request))
 
 
 
