@@ -1,5 +1,4 @@
 th{
-
     font-size: 14pt;
     color: black;
     font-weight: bold;
@@ -8,7 +7,6 @@ th{
 }
 
 .info{
-
     font-size: 14pt;
     color: black;
     font-weight: normal;
@@ -53,6 +51,7 @@ body{
     display: block;
     text-decoration: none;
 }
+<<<<<<< HEAD
 #arb{
 <<<<<<< HEAD
     text-align: center;
@@ -62,6 +61,8 @@ body{
     text-decoration: none;
     color: blue;
 }
+=======
+>>>>>>> baf1e5d04db5ac80a1cf2f92c8f80711431dc2c4
 
 .a2 a:hover {
     color: hotpink;
@@ -110,7 +111,6 @@ input[type=submit] {
     font-weight: bold;
 }
 
-
 input[type=submit]:hover {
     background-color: #45a049;
 }
@@ -124,12 +124,42 @@ input[type=submit]:hover {
     float: left;
 }
 
+#arb{
+    text-align: center;
+    font-weight: normal;
+    text-decoration: none;
+    color: #8B1C62;
+}
+
 li{
     list-style-type: circle;
-    color: blue;
+    color: #8B1C62;
     float: left;
     margin-left: 45%;
     padding-top: 1%;
 }
+
+.button1{
+    background-color: rgb(113, 198, 1);
+    color: white;
+    padding: 14px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 30%;
+    margin-top: 5%;
+}
+
+.button2{
+    background-color: rgb(113, 198, 1);
+    color: white;
+    padding: 14px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    display: inline-block;
+
+    margin-top: 5%;
+}
+
 
 

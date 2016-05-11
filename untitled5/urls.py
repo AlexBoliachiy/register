@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'^arbitrates/$', arbitrates),
     url(r'^createarbitrate/', new_arbitrate),
     url(r'^accounts/profile/', home),
-    url(r'^createact/', new_act)
+    url(r'^createact/', new_act),
+    url(r'^changeact/', change_act),
 ]

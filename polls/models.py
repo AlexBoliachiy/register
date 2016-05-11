@@ -49,7 +49,7 @@ class Arbitration(models.Model):
     dep = models.ForeignKey(Department, default=None, on_delete=models.DO_NOTHING, null=True)
 
     def __str__(self):
-        return str(self.certificate)
+        return self.user.get_full_name()
 
     def add(self, acrivity_info, dismissal_date, office_location, organization_field, name_register,
             certificate):
@@ -63,9 +63,9 @@ class Arbitration(models.Model):
 
 
 class Jud(models.Model):
-    adress = models.CharField(max_length=64)
-    name = models.CharField(max_length=64)
-    judge_name = models.CharField(max_length=64)
+    adress = models.CharField(verbose_name="Адреса суду", max_length=64)
+    name = models.CharField(verbose_name="Назва суду", max_length=64)
+    judge_name = models.CharField(verbose_name="ПІБ суді", max_length=64)
 
     def add(self, adress, name, judge_name):
         self.adress = adress
@@ -75,14 +75,14 @@ class Jud(models.Model):
 
 
 class Person(models.Model):
-    type_exist = models.BooleanField(default=True)
-    name = models.CharField(max_length=64)
-    code = models.CharField(max_length=64)
-    ownership_part = models.IntegerField()
-    kved = models.CharField(max_length=64)
-    goverment_part = models.IntegerField()
-    jud_procedure = models.CharField(max_length=64)
-    information = models.TextField()
+    type_exist = models.BooleanField(verbose_name="Юридична особа", default=True)
+    name = models.CharField(verbose_name="ПІБ", max_length=64)
+    code = models.CharField(verbose_name="Код особи", max_length=64)
+    ownership_part = models.IntegerField(verbose_name="Частина власності")
+    kved = models.CharField(verbose_name="КВЕД", max_length=64)
+    goverment_part = models.IntegerField(verbose_name="Відділ уряду")
+    jud_procedure = models.CharField(verbose_name="Деталі процесу у суді", max_length=64)
+    information = models.TextField(verbose_name="Інформація по справі")
 
     def __str__(self):
         return self.name
@@ -101,6 +101,7 @@ class Person(models.Model):
 
 class Act(models.Model):
     is_active = models.BooleanField(default=True)
+<<<<<<< HEAD
     start_date = models.DateField()
     finish_jud_date = models.DateField()
     info_processing = models.TextField()
@@ -112,6 +113,19 @@ class Act(models.Model):
     arbitr_start = models.DateField()
     list_creditors = models.TextField()
     creditor_requirements = models.TextField()
+=======
+    start_date = models.DateField(verbose_name="Початкова дата")
+    finish_jud_date = models.DateField(verbose_name="Дата завершення справи у суді")
+    info_processing = models.TextField(verbose_name="Інформація, щодо процесу")
+    end_date = models.DateField(verbose_name="Дата завершення срави")
+    arbitration = models.ForeignKey(Arbitration, on_delete=models.DO_NOTHING, verbose_name="Арбітражний керуючий")
+    jud = models.ForeignKey(Jud, on_delete=models.CASCADE)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    arbitr_status = models.CharField(verbose_name="Статус арбітражного керуючого", max_length=64)
+    arbitr_start = models.DateField(verbose_name="Дата початку роботи")
+    list_creditors = models.TextField(verbose_name="Список кредиторів")
+    creditor_requirements = models.TextField(verbose_name="Вимоги кредиторів")
+>>>>>>> baf1e5d04db5ac80a1cf2f92c8f80711431dc2c4
 
     def add(self, start_date, finish_jud_date, info_processing, end_date, arbitr_id, jud_id_date, person, arbitr_status,
             arbitr_start, list_creditors, creditor_requirements):
