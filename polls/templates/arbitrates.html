@@ -1,18 +1,27 @@
 ﻿{% extends "base.html" %}
 
 {% block content %}
+<<<<<<< HEAD
 <div id="arbitr" class="a2">
+=======
+<div id="arbitr">
+>>>>>>> baf1e5d04db5ac80a1cf2f92c8f80711431dc2c4
     {{ location}}<br />
     {# Типо локация определяет департамент, ибо  у департаментов нету имен *крайнее негодование* #}
     Ваш арбітражний керуючий:
     {%  for arbitr in list_arbitrates %}
     <ul>
     <li>
-        <a id="arb" href="/acts/{{ arbitr.id }}/">{{ arbitr.user.get_full_name }}</a>
-        <hr>
+        <a class="a2" id="arb" href="/acts/{{ arbitr.id }}/">{{ arbitr.user.get_full_name }}</a>
     </li>
     </ul>
     {% endfor %}
+
 </div>
+<<<<<<< HEAD
     <a href="/createarbitrate/">Створити нового арбітражного керуючого</a>
+=======
+<a class="button1" href="/createarbitrate/">Створити нового арбітражного керуючого</a>
+<a class="button2" href="/createact/">Створити нову справу</a>
+>>>>>>> baf1e5d04db5ac80a1cf2f92c8f80711431dc2c4
 {% endblock %}
