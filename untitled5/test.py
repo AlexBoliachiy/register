@@ -138,6 +138,7 @@ class ActTest(TestCase):
         self.arbitre.save()
         self.act = Act()
         self.act.start_date = rand_gen.randomDate("2009-1-1", "2010-1-1", random.random())
+        self.act.arbitr_start = self.act.start_date
         self.act.end_date = rand_gen.randomDate("2010-1-1", "2011-1-1", random.random())
         self.act.finish_jud_date = self.act.end_date
         self.act.arbitration = self.arbitre
@@ -361,6 +362,7 @@ class ViewTest(TestCase):
         arbitre.save()
         act1 = Act()
         act1.start_date = rand_gen.randomDate("2009-1-1", "2010-1-1", random.random())
+        act1.arbitr_start = act1.start_date
         act1.end_date = rand_gen.randomDate("2010-1-1", "2011-1-1", random.random())
         act1.finish_jud_date = act1.end_date
         act1.arbitration = arbitre
@@ -399,6 +401,7 @@ class ViewTest(TestCase):
         arbitre.save()
         act1 = Act()
         act1.start_date = rand_gen.randomDate("2009-1-1", "2010-1-1", random.random())
+        act1.arbitr_start = act1.start_date
         act1.end_date = rand_gen.randomDate("2010-1-1", "2011-1-1", random.random())
         act1.finish_jud_date = act1.end_date
         act1.arbitration = arbitre
@@ -436,6 +439,7 @@ class ViewTest(TestCase):
         arbitre.save()
         act1 = Act()
         act1.start_date = rand_gen.randomDate("2009-1-1", "2010-1-1", random.random())
+        act1.arbitr_start = act1.start_date
         act1.end_date = rand_gen.randomDate("2010-1-1", "2011-1-1", random.random())
         act1.finish_jud_date = act1.end_date
         act1.arbitration = arbitre
