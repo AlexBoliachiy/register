@@ -100,7 +100,7 @@ class Person(models.Model):
 
 
 class Act(models.Model):
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(verbose_name="Чи активна справа", default=True)
     start_date = models.DateField(verbose_name="Початкова дата")
     finish_jud_date = models.DateField(verbose_name="Дата завершення справи у суді")
     info_processing = models.TextField(verbose_name="Інформація, щодо процесу")

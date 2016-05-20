@@ -52,6 +52,12 @@ body{
     text-decoration: none;
 }
 
+#arb{
+    text-align: center;
+    text-decoration: none;
+    color: #8B1C62;
+}
+
 .a2 a:hover {
     color: hotpink;
     font-weight: normal;
@@ -112,13 +118,6 @@ input[type=submit]:hover {
     float: left;
 }
 
-#arb{
-    text-align: center;
-    font-weight: normal;
-    text-decoration: none;
-    color: #8B1C62;
-}
-
 li{
     list-style-type: circle;
     color: #8B1C62;
@@ -129,24 +128,26 @@ li{
 
 .button1{
     background-color: rgb(113, 198, 1);
+    font-size: 16pt;
     color: white;
     padding: 14px 25px;
     border-radius: 12px;
     text-decoration: none;
     display: inline-block;
-    margin-left: 30%;
+    margin-left: 34%;
     margin-top: 5%;
 }
 
 .button2{
     background-color: rgb(113, 198, 1);
+    font-size: 16pt;
     color: white;
     padding: 14px 25px;
     border-radius: 12px;
     text-decoration: none;
     display: inline-block;
-
-    margin-top: 5%;
+    margin-left: 41%;
+    margin-top: 3%;
 }
 
 

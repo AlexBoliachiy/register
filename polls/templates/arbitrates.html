@@ -1,7 +1,7 @@
 ﻿{% extends "base.html" %}
 
 {% block content %}
-<div id="arbitr">
+<div id="arbitr" class="a2">
     {{ location}}<br />
     {# Типо локация определяет департамент, ибо  у департаментов нету имен *крайнее негодование* #}
     Ваш арбітражний керуючий:
@@ -16,4 +16,5 @@
 </div>
 <a class="button1" href="/createarbitrate/">Створити нового арбітражного керуючого</a>
 <a class="button2" href="/createact/">Створити нову справу</a>
+
 {% endblock %}
