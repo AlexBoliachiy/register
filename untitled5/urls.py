@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^acts/$', acts),
     url(r'^acts/(\d+)/$', acts),
-    url(r'^$', index),
+    url(r'^$', login),
     url(r'^act/(?P<pk>[0-9]+)/$', act),
     url(r'^arbitrates/$', arbitrates),
     url(r'^createarbitrate/', new_arbitrate),

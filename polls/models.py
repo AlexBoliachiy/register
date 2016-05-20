@@ -100,27 +100,7 @@ class Person(models.Model):
 
 
 class Act(models.Model):
-<<<<<<< HEAD
-    is_active = models.BooleanField(default=True)
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    start_date = models.DateField()
-    finish_jud_date = models.DateField()
-    info_processing = models.TextField()
-    end_date = models.DateField()
-    arbitration = models.ForeignKey(Arbitration, on_delete=models.DO_NOTHING)
-    jud = models.ForeignKey(Jud, on_delete=models.CASCADE)
-    person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    arbitr_status = models.CharField(max_length=64)
-    arbitr_start = models.DateField()
-    list_creditors = models.TextField()
-    creditor_requirements = models.TextField()
-=======
-=======
     is_active = models.BooleanField(verbose_name="Чи активна справа", default=True)
->>>>>>> 8d370aef4ecb74ee19ebbc4e5dead29a0efd810f
->>>>>>> don585
     start_date = models.DateField(verbose_name="Початкова дата")
     finish_jud_date = models.DateField(verbose_name="Дата завершення справи у суді")
     info_processing = models.TextField(verbose_name="Інформація, щодо процесу")
