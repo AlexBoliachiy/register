@@ -100,6 +100,7 @@ class Person(models.Model):
 
 
 class Act(models.Model):
+<<<<<<< HEAD
     is_active = models.BooleanField(default=True)
 <<<<<<< HEAD
     start_date = models.DateField()
@@ -114,6 +115,9 @@ class Act(models.Model):
     list_creditors = models.TextField()
     creditor_requirements = models.TextField()
 =======
+=======
+    is_active = models.BooleanField(verbose_name="Чи активна справа", default=True)
+>>>>>>> 8d370aef4ecb74ee19ebbc4e5dead29a0efd810f
     start_date = models.DateField(verbose_name="Початкова дата")
     finish_jud_date = models.DateField(verbose_name="Дата завершення справи у суді")
     info_processing = models.TextField(verbose_name="Інформація, щодо процесу")
